@@ -9,6 +9,7 @@
   import * as THREE from 'three';
 
   let el: HTMLCanvasElement;
+  const cz = 12.5;
 
   onMount(() => {
     createScene(el);
@@ -22,11 +23,19 @@
       new THREE.MeshStandardMaterial({ map: stoneTexture })
     );
 
+    for (let i = 0; i < 150; i++) {
+      const star = new THREE.Mesh(new THREE.SphereGeometry(Math.random() * (.25 - .1) + .1, 24, 24), new THREE.MeshBasicMaterial({ color: 0xffffff }));
+
+      const [x, y, z] = Array(3).fill(0).map(() => THREE.MathUtils.randFloatSpread(100));
+      star.position.set(x, y, z);
+
+      scene.add(star);
+    }
+
     const light = new THREE.PointLight(0xffffff);
     const ambient = new THREE.AmbientLight(0xffffff, 0.6);
 
-    camera.rotation.x = -.5;
-    camera.position.set(0, 5, 10);
+    camera.position.set(0, 0, cz);
 
     light.position.set(5, 5, 5);
 
@@ -44,6 +53,7 @@
       const t = document.body.getBoundingClientRect().top;
 
       stone.rotation.x = t * 0.0025;
+      camera.position.z = -t * 0.025 + cz;
     }
 
     const resize = () => {
@@ -60,6 +70,7 @@
     }
 
     animate();
+    resize();
 
     window.addEventListener('resize', resize);
     window.addEventListener('scroll', scroll);
@@ -173,7 +184,6 @@
     display: flex;
     flex-shrink: 0;
     background-color: var(--bg-2);
-    // clip-path: polygon(0 0, 50% 2rem, 100% 0, 100% 100%, 0px 100%);
     padding: 2rem;
   }
 
@@ -181,7 +191,7 @@
     .container {
       display: grid;
       grid-template-columns: 2rem repeat(3, 1fr) 2rem;
-      grid-row-gap: 8rem;
+      grid-row-gap: 16rem;
 
       > * {
         grid-column-start: 2;
@@ -207,8 +217,8 @@
   }
 
   @media only screen and (max-width: 600px) {
-    .container > * {
-      margin: 2rem;
+    .container > section {
+      margin: 16rem 2rem;
     }
 
     footer {
