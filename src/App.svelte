@@ -4,7 +4,7 @@
 
   import { onMount } from 'svelte';
 
-  import { scene, camera, renderer, createScene, resize } from './scene';
+  import { scene, camera, renderer, createScene, resize as r } from './scene';
 
   import * as THREE from 'three';
 
@@ -44,6 +44,19 @@
       const t = document.body.getBoundingClientRect().top;
 
       stone.rotation.x = t * 0.0025;
+    }
+
+    const resize = () => {
+      r();
+
+      const ta = window.innerWidth / window.innerHeight;
+      const ia = 1024 / 577;
+      const factor = ia / ta;
+      
+      spaceTexture.offset.x = factor > 1 ? (1 - 1 / factor) / 2 : 0;
+      spaceTexture.repeat.x = factor > 1 ? 1 / factor : 1;
+      spaceTexture.offset.y = factor > 1 ? 0 : (1 - factor) / 2;
+      spaceTexture.repeat.y = factor > 1 ? 1 : factor;
     }
 
     animate();
