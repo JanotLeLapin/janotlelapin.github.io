@@ -60,7 +60,7 @@
       <h1>JanotLeLapin</h1>
       <h3>Bienvenue 👋</h3>
     </header>
-    <section class="tall">
+    <section>
       <h3>📚 Mes compétences</h3>
       <p> - Java (API de Spigot)</p>
       <p> - Next.js</p>
@@ -70,14 +70,14 @@
       <p> - Svelte</p>
     </section>
     <section>
-      <h3>Test</h3>
-      <p>Lorem ipsum</p>
-      <p>Dolor sit amet</p>
+      <h3>🏆 Mon travail</h3>
+      <p> - AC UHC</p>
     </section>
     <section class="wide">
       <h3>☎️ Me contacter</h3>
       <p>Vous avez des idées ? Super, je peux les développer !</p>
-      <p>Contactez moi sur Discord : <a href="https://discord.com/users/437953881914474523">JanotLeLapin#4989</a></p>
+      <p>Contactez moi sur Discord : <a href="https://discord.com/users/437953881914474523">JanotLeLapin#4989</a>.</p>
+      <p>Le prix dépendra de la complexité du projet.</p>
     </section>
   </div>
 </main>
@@ -145,10 +145,6 @@
 
   .wide {
     grid-column: 2 / 4;
-  }
-
-  .tall {
-    grid-row: span 4 / auto;
   }
 
   h1, h3 {
