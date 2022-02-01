@@ -24,9 +24,14 @@
     );
 
     for (let i = 0; i < 150; i++) {
-      const star = new THREE.Mesh(new THREE.SphereGeometry(Math.random() * (.25 - .1) + .1, 24, 24), new THREE.MeshBasicMaterial({ color: 0xffffff }));
+      const star = new THREE.Mesh(
+        new THREE.SphereGeometry(Math.random() * (0.25 - 0.1) + 0.1, 24, 24),
+        new THREE.MeshBasicMaterial({ color: 0xffffff })
+      );
 
-      const [x, y, z] = Array(3).fill(0).map(() => THREE.MathUtils.randFloatSpread(100));
+      const [x, y, z] = Array(3)
+        .fill(0)
+        .map(() => THREE.MathUtils.randFloatSpread(100));
       star.position.set(x, y, z);
 
       scene.add(star);
@@ -54,7 +59,7 @@
 
       stone.rotation.x = t * 0.0025;
       camera.position.z = -t * 0.025 + cz;
-    }
+    };
 
     const resize = () => {
       r();
@@ -62,12 +67,12 @@
       const ta = window.innerWidth / window.innerHeight;
       const ia = 1024 / 577;
       const factor = ia / ta;
-      
+
       spaceTexture.offset.x = factor > 1 ? (1 - 1 / factor) / 2 : 0;
       spaceTexture.repeat.x = factor > 1 ? 1 / factor : 1;
       spaceTexture.offset.y = factor > 1 ? 0 : (1 - factor) / 2;
       spaceTexture.repeat.y = factor > 1 ? 1 : factor;
-    }
+    };
 
     animate();
     resize();
@@ -78,7 +83,7 @@
 </script>
 
 <main>
-  <canvas bind:this={el}></canvas>
+  <canvas bind:this={el} />
   <div class="content">
     <div class="container">
       <header>
@@ -87,31 +92,45 @@
       </header>
       <section>
         <h3>📚 Mes compétences</h3>
-        <p> - Java (API de Spigot)</p>
-        <p> - Next.js</p>
-        <p> - Discord.js</p>
-        <p> - Angular</p>
-        <p> - React</p>
-        <p> - Svelte</p>
+        <p>- Plugins Minecraft (Bukkit, SpigotMC et PaperMC)</p>
+        <p>- Bots Discord (Discord.js)</p>
+        <p>- Next.js</p>
+        <p>- Sveltekit</p>
+        <p>- Angular</p>
+        <p>- React</p>
+        <p>- Svelte</p>
       </section>
       <section>
         <h3>🏆 Mon travail</h3>
-        <p> - Assassination Classroom UHC</p>
+        <p>- Assassination Classroom UHC</p>
       </section>
       <section class="wide">
         <h3>☎️ Me contacter</h3>
         <p>Vous avez des idées ? Super, je peux les développer !</p>
-        <p>Contactez moi sur Discord : <a target="_blank" href="https://discord.com/users/437953881914474523">JanotLeLapin#4989</a>.</p>
-        <p>Le prix dépendra de la complexité du projet.</p>
+        <p>
+          Contactez moi sur Discord : <a
+            target="_blank"
+            href="https://discord.com/users/437953881914474523">JanotLeLapin#4989</a
+          >.
+        </p>
       </section>
     </div>
     <footer>
       <h1>JanotLeLapin</h1>
       <section>
         <h3>Liens</h3>
-        <p><a target="_blank" href="https://discord.com/users/437953881914474523">Discord</a></p>
+        <p>
+          <a target="_blank" href="https://discord.com/users/437953881914474523"
+            >Discord</a
+          >
+        </p>
         <p><a target="_blank" href="https://github.com/JanotLeLapin">GitHub</a></p>
-        <p><a target="_blank" href="https://www.youtube.com/channel/UC8zxDVecLTSVLpO88Z6KvcA">YouTube</a></p>
+        <p>
+          <a
+            target="_blank"
+            href="https://www.youtube.com/channel/UC8zxDVecLTSVLpO88Z6KvcA">YouTube</a
+          >
+        </p>
       </section>
     </footer>
   </div>
@@ -130,7 +149,8 @@
   :global(body) {
     color: var(--fg-2);
     background-color: var(--bg-2);
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     margin: 0;
@@ -139,7 +159,7 @@
   :global(a) {
     color: #668cff;
     text-decoration: none;
-    transition: .20s ease-in-out;
+    transition: 0.2s ease-in-out;
   }
   :global(a:hover) {
     color: #b3c6ff;
@@ -170,13 +190,14 @@
     > * {
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
       background-color: rgba(0, 0, 0, 0.75);
-      border-radius: .5rem;
+      border-radius: 0.5rem;
 
       padding: 1rem 2rem;
     }
   }
 
-  h1, h3 {
+  h1,
+  h3 {
     color: var(--fg-1);
   }
 
