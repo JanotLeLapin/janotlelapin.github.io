@@ -2,7 +2,7 @@ name: CI
 
 on:
   push:
-    branches: [main]
+    branches: [website]
 
 jobs:
   render:
@@ -14,15 +14,11 @@ jobs:
           node-version: '17'
       - name: Install packages
         run: npm ci
-      - name: Install pandoc
-        run: |
-          sudo wget https://github.com/jgm/pandoc/releases/download/2.17.0.1/pandoc-2.17.0.1-1-amd64.deb
-          sudo dpkg -i pandoc-2.17.0.1-1-amd64.deb
       - name: Build website
         run: npm run build
       - name: Deploy with gh-pages
         run: |
           git remote set-url origin https://git:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
-          npx gh-pages -d pages -u "github-actions-bot <support+actions@github.copm>"
+          npx gh-pages -d main -u "github-actions-bot <support+actions@github.copm>"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
