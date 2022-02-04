@@ -102,7 +102,13 @@
       </section>
       <section>
         <h3>🏆 Mon travail</h3>
-        <p>- Assassination Classroom UHC</p>
+        <p>
+          - <a href="https://vatarox.gitbook.io/assassination-classroom-uhc/"
+            >Assassination Classroom UHC</a
+          >
+          (avec
+          <a href="https://www.youtube.com/channel/UCygCO6mPRFbzE9hHk559BBA">VaTaRoX</a>)
+        </p>
       </section>
       <section class="wide">
         <h3>☎️ Me contacter</h3>
