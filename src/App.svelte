@@ -91,14 +91,17 @@
         <h3>Bienvenue 👋</h3>
       </header>
       <section>
+        <h3>🤔 Qui suis-je</h3>
+        <p>
+          Un lycéen de {new Date().getFullYear() - 2006} ans qui ❤️ coder depuis 2018
+        </p>
+      </section>
+      <section>
         <h3>📚 Mes compétences</h3>
         <p>- Plugins Minecraft (Bukkit, SpigotMC et PaperMC)</p>
         <p>- Bots Discord (Discord.js)</p>
-        <p>- Next.js</p>
-        <p>- Sveltekit</p>
-        <p>- Angular</p>
-        <p>- React</p>
-        <p>- Svelte</p>
+        <p>- Applications web (React, Angular, Svelte, Next.js, Sveltekit)</p>
+        <p>- Bases de données (Neo4J, Firestore, MongoDB)</p>
       </section>
       <section>
         <h3>🏆 Mon travail</h3>
@@ -106,6 +109,11 @@
           - <a href="https://vatarox.gitbook.io/assassination-classroom-uhc/"
             >Assassination Classroom UHC</a
           >
+          (avec
+          <a href="https://www.youtube.com/channel/UCygCO6mPRFbzE9hHk559BBA">VaTaRoX</a>)
+        </p>
+        <p>
+          - <a href="https://vatarox.gitbook.io/uhc-ball/">UHC Ball</a>
           (avec
           <a href="https://www.youtube.com/channel/UCygCO6mPRFbzE9hHk559BBA">VaTaRoX</a>)
         </p>
