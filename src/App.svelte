@@ -57,8 +57,11 @@
     const scroll = () => {
       const t = document.body.getBoundingClientRect().top;
 
+      camera.position.x = Math.cos(t / 1000) * cz + t / 100;
+      camera.position.z = Math.sin(t / 1000) * cz + t / 100;
+      camera.lookAt(scene.position);
+
       stone.rotation.x = t * 0.0025;
-      camera.position.z = -t * 0.025 + cz;
     };
 
     const resize = () => {
