@@ -132,6 +132,9 @@
         </p>
       </section>
     </div>
+
+    <div class="waves" />
+
     <footer>
       <h1>JanotLeLapin</h1>
       <section>
@@ -155,12 +158,12 @@
 
 <style lang="scss">
   :root {
-    --fg-1: #e6e6e6;
-    --fg-2: #cccccc;
-    --fg-3: #bfbfbf;
-    --bg-1: #404040;
-    --bg-2: #333333;
-    --bg-3: #1a1a1a;
+    --fg-1: #eef2ff;
+    --fg-2: #e0e7ff;
+    --fg-3: #c7d2fe;
+    --bg-1: #2649ae;
+    --bg-2: #002f66;
+    --bg-3: #001122;
   }
 
   :global(body) {
@@ -218,10 +221,19 @@
     color: var(--fg-1);
   }
 
+  .waves {
+    aspect-ratio: 1920/300;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-image: url('./assets/waves.svg');
+  }
+
   footer {
     display: flex;
     flex-shrink: 0;
-    background-color: var(--bg-2);
+    background-color: var(--bg-3);
     padding: 2rem;
   }
 
