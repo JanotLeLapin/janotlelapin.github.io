@@ -41,7 +41,7 @@
     const ambient = new THREE.AmbientLight(0xffffff, 0.6);
 
     camera.position.set(0, 0, cz);
-    light.position.set(15, 15, 15);
+    light.position.set(0, 15, -20);
 
     scene.add(stone, light, ambient);
 
@@ -58,6 +58,7 @@
 
       camera.position.x = Math.cos(t / 1000) * cz + t / 100;
       camera.position.z = Math.sin(t / 1000) * cz + t / 100;
+      camera.position.y = -t / 100;
       camera.lookAt(scene.position);
 
       stone.rotation.x = t * 0.0025;
