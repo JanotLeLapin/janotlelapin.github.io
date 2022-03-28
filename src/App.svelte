@@ -41,8 +41,7 @@
     const ambient = new THREE.AmbientLight(0xffffff, 0.6);
 
     camera.position.set(0, 0, cz);
-
-    light.position.set(5, 5, 5);
+    light.position.set(15, 15, 15);
 
     scene.add(stone, light, ambient);
 
@@ -99,31 +98,41 @@
           Un lycéen de {new Date().getFullYear() - 2006} ans qui ❤️ coder depuis 2018
         </p>
       </section>
-      <section>
+      <section class="wide">
         <h3>📚 Mes compétences</h3>
-        <p>- Plugins Minecraft (Bukkit, SpigotMC et PaperMC)</p>
+        <p>- Plugins Minecraft (Bukkit, SpigotMC, PaperMC)</p>
         <p>- Bots Discord (Discord.js)</p>
         <p>- Applications web (React, Angular, Svelte, Next.js, Sveltekit)</p>
         <p>- Bases de données (Neo4J, Firestore, MongoDB)</p>
+        <p>- Cours de programmation (débutant, intermédiaire)</p>
       </section>
-      <section>
+      <section class="wide">
         <h3>🏆 Mon travail</h3>
         <p>
-          - <a href="https://vatarox.gitbook.io/assassination-classroom-uhc/"
+          - <a
+            target="_blank"
+            href="https://vatarox.gitbook.io/assassination-classroom-uhc/"
             >Assassination Classroom UHC</a
           >
           (avec
-          <a href="https://www.youtube.com/channel/UCygCO6mPRFbzE9hHk559BBA">VaTaRoX</a>)
+          <a
+            target="_blank"
+            href="https://www.youtube.com/channel/UCygCO6mPRFbzE9hHk559BBA">VaTaRoX</a
+          >)
         </p>
         <p>
-          - <a href="https://vatarox.gitbook.io/uhc-ball/">UHC Ball</a>
+          - <a target="_blank" href="https://vatarox.gitbook.io/uhc-ball/">UHC Ball</a>
           (avec
-          <a href="https://www.youtube.com/channel/UCygCO6mPRFbzE9hHk559BBA">VaTaRoX</a>)
+          <a
+            target="_blank"
+            href="https://www.youtube.com/channel/UCygCO6mPRFbzE9hHk559BBA">VaTaRoX</a
+          >)
         </p>
+        <p>- Ce site :)</p>
       </section>
-      <section class="wide">
+      <section>
         <h3>☎️ Me contacter</h3>
-        <p>Vous avez des idées ? Super, je peux les développer !</p>
+        <p>Vous avez une idée de projet 🚀 ou vous voulez apprendre à coder 💻 ?</p>
         <p>
           Contactez moi sur Discord : <a
             target="_blank"
