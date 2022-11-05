@@ -1,0 +1,56 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Cards from '../components/Cards.svelte';
+
+import type { Repo } from '../lib/types';
+
+const repos: Repo[] = await fetch('https://gh-pinned-repos.egoist.dev/?username=JanotLeLapin').then(data => data.json());
+---
+
+<Layout title="Joseph Daly">
+	<main class="grid place-items-center h-screen">
+    <div class="text-center">
+      <h1 class="bg-clip-text text-transparent pb-4">Joseph Daly</h1>
+      <h3>Développeur web fullstack, entre autres.</h3>
+    </div>
+  </main>
+  <article>
+    <div class="article-title">
+      <h2>Mes projets</h2>
+      <p>Ce sur quoi je travaille à mes heures perdues.</p>
+    </div>
+    <Cards client:visible {repos} />
+  </article>
+</Layout>
+
+<style lang="scss">
+  $background-size: 200%;
+
+  @keyframes title-colors {
+    from { background-position: 0% center }
+    to { background-position: -$background-size center }
+  }
+
+  h1 {
+    animation: title-colors 3s linear infinite;
+    background: linear-gradient(
+      to right,
+      theme('colors.green.500'),
+      theme('colors.emerald.500'),
+      theme('colors.cyan.500'),
+      theme('colors.green.500'),
+    );
+    background-size: $background-size;
+  }
+
+  article {
+    .article-title {
+      margin: 4rem 0;
+      text-align: center;
+
+      * {
+        margin: .5rem 0;
+      }
+    }
+  }
+</style>
