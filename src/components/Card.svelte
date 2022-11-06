@@ -10,14 +10,9 @@
       <p class="text-xl">{repo.owner}/<span class="font-bold text-gray-900">{repo.repo}</span></p>
       {#if repo.description}<p>{repo.description}</p>{/if}
     </div>
-    <p class="absolute bottom-4 right-4 lang font-semibold" style={`--lang-color: ${repo.languageColor}`}>{repo.language}</p>
+    <div class="flex items-center absolute bottom-4 right-4 space-x-1">
+      <p class="lang font-semibold">{repo.language}</p>
+      <div class="w-3 h-3 rounded-sm" style={`background-color: ${repo.languageColor}`} />
+    </div>
   </div>
 </a>
-
-<style>
-  .lang {
-    text-decoration: underline;
-    text-decoration-color: var(--lang-color);
-    text-decoration-thickness: 3px;
-  }
-</style>
