@@ -22,7 +22,7 @@ const repos: Repo[] = await fetch('https://gh-pinned-repos.egoist.dev/?username=
       <h2>Mes projets</h2>
       <p>Ce sur quoi je travaille à mes heures perdues.</p>
     </div>
-    <Cards client:visible {repos} />
+    <Cards {repos} />
     <p class="text-center">...et encore plus sur
       <a class="text-teal-500 underline decoration-2" href="https://github.com/JanotLeLapin" target="_blank" rel="noreferrer">ma page GitHub</a>.
     </p>
