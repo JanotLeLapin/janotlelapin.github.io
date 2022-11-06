@@ -1,10 +1,18 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Card from '../components/repo/Card.svelte';
+import CapabilityCard from '../components/capabilities/Card.svelte';
+import RepoCard from '../components/repo/Card.svelte';
 
-import type { Repo } from '../lib/types';
+import type { Repo, Capability } from '../lib/types';
 
 const repos: Repo[] = await fetch('https://gh-pinned-repos.egoist.dev/?username=JanotLeLapin').then(data => data.json());
+const capabilities: Capability[] = [
+{ name: 'Design UI/UX', description: 'Je peux créer une interface web attractives et intuitives.' },
+{ name: 'Back-end', description: 'Je peux construire un serveur web sécurisés avec des technologies performantes et évolutives.' },
+{ name: 'Applications de bureau', description: 'Je peux construire une application de bureau native performante.' },
+{ name: 'Plugin Minecraft', description: 'Je peux créer un plugin Minecraft sur des technologies telles que Paper ou Sponge.' },
+{ name: 'Bots Discord', description: 'Je peux créer un bot Discord performant et entièrement personnalisé.' }
+]
 ---
 
 <Layout title="Joseph Daly">
@@ -19,11 +27,12 @@ const repos: Repo[] = await fetch('https://gh-pinned-repos.egoist.dev/?username=
   </main>
   <div class="text-center">
     <img src="/svg/red-wave-top.svg" />
-    <article class="text-gray-200">
+    <article class="text-gray-200 bg-red-700">
       <div class="space-y-2 bg-red-700">
         <h2 class="text-gray-100">Mes compétences</h2>
         <p>Que puis-je faire pour vous ?</p>
       </div>
+      <ul class="cards">{capabilities.map(capability => <li><CapabilityCard {capability} /></li>)}</ul>
     </article>
     <img src="/svg/red-wave-bottom.svg" />
     <article>
@@ -31,7 +40,7 @@ const repos: Repo[] = await fetch('https://gh-pinned-repos.egoist.dev/?username=
         <h2>Mes projets</h2>
         <p>Ce sur quoi j'aime travailler.</p>
       </div>
-      <ul class="cards">{repos.map(repo => <li><Card {repo} /></li>)}</ul>
+      <ul class="cards">{repos.map(repo => <li><RepoCard {repo} /></li>)}</ul>
       <p>...et encore plus sur
         <a class="text-teal-500 underline decoration-2" href="https://github.com/JanotLeLapin" target="_blank" rel="noreferrer">ma page GitHub</a>.
       </p>

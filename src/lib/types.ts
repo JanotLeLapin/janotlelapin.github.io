@@ -5,3 +5,8 @@ export type Repo = {
   language?: string;
   languageColor?: string;
 };
+
+export type Capability = {
+  name: string;
+  description?: string;
+}
