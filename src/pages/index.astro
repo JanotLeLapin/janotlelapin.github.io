@@ -9,9 +9,12 @@ const repos: Repo[] = await fetch('https://gh-pinned-repos.egoist.dev/?username=
 
 <Layout title="Joseph Daly">
 	<main class="grid place-items-center h-screen">
-    <div class="text-center">
-      <h1 class="bg-clip-text text-transparent pb-4">Joseph Daly</h1>
-      <h3>Développeur web fullstack, entre autres.</h3>
+    <div class="text-center space-y-2">
+      <div class="relative">
+        <div class="absolute bg-gray-100 w-full h-full z-10 right-0 mask" />
+        <h1 class="bg-clip-text text-transparent pb-4">Joseph Daly</h1>
+      </div>
+      <h3 class="opacity-0 subtitle">Développeur web fullstack, entre autres.</h3>
     </div>
   </main>
   <article>
@@ -27,6 +30,7 @@ const repos: Repo[] = await fetch('https://gh-pinned-repos.egoist.dev/?username=
 </Layout>
 
 <style lang="scss">
+  $bg: theme('colors.gray.100');
   $background-size: 200%;
 
   @keyframes title-colors {
@@ -34,8 +38,25 @@ const repos: Repo[] = await fetch('https://gh-pinned-repos.egoist.dev/?username=
     to { background-position: -$background-size center }
   }
 
+  @keyframes reveal-title {
+    from { width: 100% }
+    to { width: 0 }
+  }
+
+  @keyframes reveal-subtitle {
+    from {
+      transform: translateY(16px);
+      opacity: 0;
+    }
+
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
   h1 {
-    animation: title-colors 3s linear infinite;
+    animation: title-colors 2s linear infinite;
     background: linear-gradient(
       to right,
       theme('colors.green.500'),
@@ -44,6 +65,16 @@ const repos: Repo[] = await fetch('https://gh-pinned-repos.egoist.dev/?username=
       theme('colors.green.500'),
     );
     background-size: $background-size;
+  }
+
+  .mask {
+    animation: reveal-title 4s cubic-bezier(.03, .75, .1, .99);
+    animation-fill-mode: forwards;
+  }
+
+  .subtitle {
+    animation: reveal-subtitle 800ms ease-out 2s;
+    animation-fill-mode: forwards;
   }
 
   article {
