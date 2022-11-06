@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Cards from '../components/repo/Cards.svelte';
+import Card from '../components/repo/Card.svelte';
 
 import type { Repo } from '../lib/types';
 
@@ -31,7 +31,7 @@ const repos: Repo[] = await fetch('https://gh-pinned-repos.egoist.dev/?username=
         <h2>Mes projets</h2>
         <p>Ce sur quoi j'aime travailler.</p>
       </div>
-      <Cards {repos} />
+      <ul class="cards">{repos.map(repo => <li><Card {repo} /></li>)}</ul>
       <p>...et encore plus sur
         <a class="text-teal-500 underline decoration-2" href="https://github.com/JanotLeLapin" target="_blank" rel="noreferrer">ma page GitHub</a>.
       </p>

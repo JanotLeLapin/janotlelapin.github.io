@@ -19,12 +19,24 @@ const { title } = Astro.props;
 		<slot />
 	</body>
 </html>
-<style is:global>
+<style lang="scss" is:global>
   @tailwind base;
   @tailwind components;
   @tailwind utilities;
 
-  @import url('https://fonts.googleapis.com/css?family=Roboto');
+  @layer utilities {
+    .cards {
+      @apply grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 m-8;
+
+      > li {
+        @apply transition-all;
+      }
+
+      &:has(:hover) > li:not(:hover) {
+        opacity: 0.7;
+      }
+    }
+  }
 
   @layer base {
     * {
