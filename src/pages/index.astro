@@ -1,4 +1,6 @@
 ---
+import Card from '../components/Card.astro'
+
 const title = "Joseph Daly";
 const description = [
   "Bonjour, je m'appelle Joseph et j'aime bien créer des choses sur Internet.",
@@ -32,6 +34,19 @@ const description = [
         {description.map(d => <p>{d}</p>)}
       </div>
     </div>
+    <main class="mt-16 space-y-32">
+      <div class="space-y-24">
+        <div class="space-y-2 text-center">
+          <h3 class="text-indigo-200 text-3xl font-bold">Mes compétences</h3>
+          <p class="text-indigo-300">Je peux fabriquer plusieurs choses différentes, avec plusieurs outils différents.</p>
+        </div>
+        <div class="grid grid-cols-3 gap-12 mx-[20%]">
+          <Card title="Plugin Minecraft" content="J'aime bien Minecraft, j'ai donc naturellement appris à modder des serveurs Minecraft : Bukkit, Spigot, Paper ou Sponge, je peux vous faire un plugin." />
+          <Card title="Bot Discord" content="Je passe beaucoup de temps sur Discord, et les bots sont une partie de ma vie maintenant. Je peux vous construire un bot très performant pour animer votre serveur." />
+          <Card title="Application Web" content="Quoi de mieux qu'une application web pour se créer une audience ? Je peux vous construire une interface attirante et un serveur performant." />
+        </div>
+      </div>
+    </main>
 	</body>
 </html>
 
