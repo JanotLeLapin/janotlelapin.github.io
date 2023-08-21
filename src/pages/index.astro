@@ -35,7 +35,7 @@ const description = [
       </div>
     </div>
     <main class="mt-16 mb-8 space-y-32">
-      <div class="space-y-24">
+      <article>
         <div class="space-y-2 text-center mx-8">
           <h3 class="text-indigo-200 text-3xl font-bold">Mes compétences</h3>
           <p class="text-indigo-300">Je peux fabriquer plusieurs choses différentes, avec plusieurs outils différents.</p>
@@ -45,7 +45,16 @@ const description = [
           <Card title="Bot Discord" content="Je passe beaucoup de temps sur Discord, et les bots sont une partie de ma vie maintenant. Je peux vous construire un bot très performant pour animer votre serveur." />
           <Card title="Application Web" content="Quoi de mieux qu'une application web pour se créer une audience ? Je peux vous construire une interface attirante et un serveur performant." />
         </div>
-      </div>
+      </article>
+      <article>
+        <div class="space-y-2 text-center mx-8">
+          <h3 class="text-indigo-200 text-3xl font-bold">Contact</h3>
+          <div class="text-indigo-300 text-lg">
+            <p>Vous voulez fabriquer quelque chose ? Je peux aider.</p>
+            <p>Vous pouvez me contacter sur <a href="https://discord.com/users/437953881914474523" target="_blank">Discord</a>.</p>
+          </div>
+        </div>
+      </article>
     </main>
 	</body>
 </html>
@@ -61,5 +70,13 @@ const description = [
 
   header a:hover {
     @apply text-white bg-fuchsia-400;
+  }
+
+  article {
+    @apply space-y-24;
+  }
+
+  article a {
+    @apply text-fuchsia-500 underline decoration-2 hover:text-fuchsia-400 transition-colors;
   }
 </style>
