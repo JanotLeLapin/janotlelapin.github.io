@@ -21,26 +21,26 @@ const description = [
 	</head>
 	<body class="bg-gray-900">
     <header class="fixed w-full backdrop-blur-sm">
-      <div class="flex justify-end space-x-12 p-4">
+      <div class="flex justify-center sm:justify-end space-x-12 p-4">
         <a href="https://twitter.com/janotlelapin" target="_blank">Twitter</a>
         <a href="https://github.com/JanotLeLapin" target="_blank">Github</a>
         <a href="https://codeberg.org/JanotLeLapin" target="_blank">Codeberg</a>
       </div>
     </header>
-    <div class="px-[15%] py-36 space-y-6">
+    <div class="text-center sm:text-left px-[15%] py-36 space-y-6">
       <h1 class="text-indigo-100 text-6xl font-bold">Joseph Daly</h1>
       <h3 class="text-indigo-300 text-4xl font-bold">Je fabrique des trucs sur Internet.</h3>
       <div class="text-slate-400 text-lg">
         {description.map(d => <p>{d}</p>)}
       </div>
     </div>
-    <main class="mt-16 space-y-32">
+    <main class="mt-16 mb-8 space-y-32">
       <div class="space-y-24">
-        <div class="space-y-2 text-center">
+        <div class="space-y-2 text-center mx-8">
           <h3 class="text-indigo-200 text-3xl font-bold">Mes compétences</h3>
           <p class="text-indigo-300">Je peux fabriquer plusieurs choses différentes, avec plusieurs outils différents.</p>
         </div>
-        <div class="grid grid-cols-3 gap-12 mx-[20%]">
+        <div class="grid grid-cols-1 xl:grid-cols-3 gap-12 mx-[20%]">
           <Card title="Plugin Minecraft" content="J'aime bien Minecraft, j'ai donc naturellement appris à modder des serveurs Minecraft : Bukkit, Spigot, Paper ou Sponge, je peux vous faire un plugin." />
           <Card title="Bot Discord" content="Je passe beaucoup de temps sur Discord, et les bots sont une partie de ma vie maintenant. Je peux vous construire un bot très performant pour animer votre serveur." />
           <Card title="Application Web" content="Quoi de mieux qu'une application web pour se créer une audience ? Je peux vous construire une interface attirante et un serveur performant." />
@@ -56,7 +56,7 @@ const description = [
   }
 
   header a {
-    @apply text-fuchsia-400 border rounded border-fuchsia-400 px-4 py-2 cursor-pointer transition-colors;
+    @apply text-fuchsia-400 border border-fuchsia-400 px-4 py-2 cursor-pointer transition-colors;
   }
 
   header a:hover {
