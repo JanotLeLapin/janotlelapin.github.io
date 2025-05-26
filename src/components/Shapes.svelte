@@ -52,14 +52,15 @@
   }
 
   const createHelix = (): THREE.Object3D => {
+    const height = 2;
     const radius = 1;
-    const path = new HelixCurve(radius, 4, 2);
+    const path = new HelixCurve(radius, 4, height);
     const geometry = new THREE.TubeGeometry(path, 200, 0.1, 16, false);
+    geometry.translate(0, 0, -(height / 2))
 
     const mesh = new THREE.Mesh(geometry, material);
 
     const startPoints = [];
-    startPoints.push(path.getPoint(0));
     for (let i = 0; i <= geometry.parameters.radialSegments; i++) {
       startPoints.push(new THREE.Vector3().fromBufferAttribute(geometry.attributes.position, i));
     }
@@ -73,7 +74,7 @@
     const shapeStart = new THREE.Mesh(pointsStartGeometry, material);
 
     const endPoints = [];
-    endPoints.push(path.getPoint(1));
+    endPoints.push(path.getPoint(1).sub(new THREE.Vector3(0, 0, height / 2)));
     for (let i = (geometry.parameters.radialSegments + 1) * geometry.parameters.tubularSegments; i < geometry.attributes.position.count; i++) {
       endPoints.push(new THREE.Vector3().fromBufferAttribute(geometry.attributes.position, i));
     }
