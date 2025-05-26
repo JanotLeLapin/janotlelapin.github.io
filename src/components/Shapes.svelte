@@ -104,11 +104,11 @@
   }
 
   const rotateHelix = (mesh: THREE.Object3D) => {
-    mesh.rotateOnAxis(new THREE.Vector3(0, 0, 1), rotationSpeed);
+    mesh.rotateOnAxis(new THREE.Vector3(0, -0.1, 0.9), rotationSpeed);
   }
 
   const rotateCube = (mesh: THREE.Object3D) => {
-    mesh.rotateOnAxis(new THREE.Vector3(1, 1, 0), rotationSpeed / 2);
+    mesh.rotateOnAxis(new THREE.Vector3(0.5, 0.25, 0.25), rotationSpeed);
   }
 
   onMount(() => {
