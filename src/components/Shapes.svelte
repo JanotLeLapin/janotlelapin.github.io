@@ -137,14 +137,15 @@
       camera.updateProjectionMatrix();
       renderer.setSize(window.innerWidth, window.innerHeight);
 
-      const margin = 1;
+      const mx = 2;
+      const my = 0.5;
 
       const vFOV = THREE.MathUtils.degToRad(camera.fov);
       const height = 2 * Math.tan(vFOV / 2) * camera.position.z;
       const width = height * camera.aspect;
 
-      helix.position.set((width / 2) - margin, (height / 2) - margin, 0);
-      cube.position.set((-width / 2) + margin, 0, 0);
+      helix.position.set((width / 2) - mx, (height / 2) - my, 0);
+      cube.position.set((-width / 2) + mx, 0, 0);
     }
 
     const scroll = () => {
