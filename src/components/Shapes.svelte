@@ -51,27 +51,63 @@
     }
   }
 
-  const createHelix = (): THREE.Mesh => {
-    const path = new HelixCurve(0.4, 2, 1);
+  const createHelix = (): THREE.Object3D => {
+    const radius = 0.4;
+    const path = new HelixCurve(radius, 2, 1);
     const geometry = new THREE.TubeGeometry(path, 200, 0.1, 16, false);
+
     const mesh = new THREE.Mesh(geometry, material);
-    mesh.rotation.x = 1.4;
-    mesh.rotation.y = 1.8;
-    return mesh;
+
+    const startPoints = [];
+    startPoints.push(path.getPoint(0));
+    for (let i = 0; i <= geometry.parameters.radialSegments; i++) {
+      startPoints.push(new THREE.Vector3().fromBufferAttribute(geometry.attributes.position, i));
+    }
+    const pointsStartGeometry = new THREE.BufferGeometry().setFromPoints(startPoints);
+    const indexStart = [];
+    for (let i = 0; i < pointsStartGeometry.attributes.position.count; i++) {
+      indexStart.push(0, i, i + 1);
+    }
+    pointsStartGeometry.setIndex(indexStart);
+
+    const shapeStart = new THREE.Mesh(pointsStartGeometry, material);
+
+    const endPoints = [];
+    endPoints.push(path.getPoint(1));
+    for (let i = (geometry.parameters.radialSegments + 1) * geometry.parameters.tubularSegments; i < geometry.attributes.position.count; i++) {
+      endPoints.push(new THREE.Vector3().fromBufferAttribute(geometry.attributes.position, i));
+    }
+    const pointsEndGeometry = new THREE.BufferGeometry().setFromPoints(endPoints);
+    const indexEnd = [];
+    for (let i = 1; i < pointsEndGeometry.attributes.position.count - 1; i++) {
+      indexEnd.push(0, i + 1, i);
+    }
+    pointsEndGeometry.setIndex(indexEnd);
+
+    const shapeEnd = new THREE.Mesh(pointsEndGeometry, material);
+
+    const group = new THREE.Group();
+    group.add(mesh);
+    group.add(shapeStart);
+    group.add(shapeEnd);
+
+    group.rotation.x = 1.4;
+    group.rotation.y = 1.8;
+    return group;
   }
 
-  const createCube = (): THREE.Mesh => {
+  const createCube = (): THREE.Object3D => {
     const geometry = new THREE.BoxGeometry(1, 1, 1);
     const mesh = new THREE.Mesh(geometry, material);
     mesh.position.x = 2;
     return mesh;
   }
 
-  const rotateHelix = (mesh: THREE.Mesh) => {
+  const rotateHelix = (mesh: THREE.Object3D) => {
     mesh.rotateOnAxis(new THREE.Vector3(0, 0, 1), rotationSpeed);
   }
 
-  const rotateCube = (mesh: THREE.Mesh) => {
+  const rotateCube = (mesh: THREE.Object3D) => {
     mesh.rotateOnAxis(new THREE.Vector3(1, 1, 0), rotationSpeed / 2);
   }
 
