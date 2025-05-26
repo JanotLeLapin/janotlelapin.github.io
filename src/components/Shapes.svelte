@@ -112,7 +112,7 @@
 
   onMount(() => {
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 1000);
     camera.position.z = 6;
 
     const renderer = new THREE.WebGLRenderer({ canvas });
@@ -138,12 +138,13 @@
       renderer.setSize(window.innerWidth, window.innerHeight);
 
       const margin = 1;
+
       const vFOV = THREE.MathUtils.degToRad(camera.fov);
       const height = 2 * Math.tan(vFOV / 2) * camera.position.z;
       const width = height * camera.aspect;
 
-      cube.position.set((width / 2) - margin, (height / 2) - margin, 0);
-      helix.position.set((-width / 2) + margin, 0, 0);
+      helix.position.set((width / 2) - margin, (height / 2) - margin, 0);
+      cube.position.set((-width / 2) + margin, 0, 0);
     }
 
     window.addEventListener('resize', resize);
