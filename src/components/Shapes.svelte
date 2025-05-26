@@ -147,8 +147,17 @@
       cube.position.set((-width / 2) + margin, 0, 0);
     }
 
+    const scroll = () => {
+      const scrollTop = window.scrollY;
+      camera.rotation.x = -scrollTop * 0.0006;
+      camera.position.z = 6 - scrollY * 0.01;
+    }
+
     window.addEventListener('resize', resize);
+    window.addEventListener('scroll', scroll);
+
     resize();
+    scroll();
   })
 </script>
 
