@@ -99,7 +99,6 @@
   const createCube = (): THREE.Object3D => {
     const geometry = new THREE.BoxGeometry(1, 1, 1);
     const mesh = new THREE.Mesh(geometry, material);
-    mesh.position.x = 2;
     return mesh;
   }
 
@@ -114,12 +113,14 @@
   onMount(() => {
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    camera.position.z = 6;
 
     const renderer = new THREE.WebGLRenderer({ canvas });
     renderer.setSize(window.innerWidth, window.innerHeight);
 
     const helix = createHelix();
     const cube = createCube();
+
     scene.add(helix);
     scene.add(cube);
 
@@ -132,11 +133,22 @@
     }
     renderer.setAnimationLoop(animate);
 
-    window.addEventListener('resize', () => {
+    const resize = () => {
       camera.aspect = window.innerWidth / window.innerHeight;
       camera.updateProjectionMatrix();
       renderer.setSize(window.innerWidth, window.innerHeight);
-    })
+
+      const margin = 1;
+      const vFOV = THREE.MathUtils.degToRad(camera.fov);
+      const height = 2 * Math.tan(vFOV / 2) * camera.position.z;
+      const width = height * camera.aspect;
+
+      cube.position.set((width / 2) - margin, (height / 2) - margin, 0);
+      helix.position.set((-width / 2) + margin, 0, 0);
+    }
+
+    window.addEventListener('resize', resize);
+    resize();
   })
 </script>
 
