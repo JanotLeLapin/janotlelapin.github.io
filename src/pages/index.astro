@@ -1,6 +1,21 @@
 ---
 import Layout from '../layouts/Layout.astro';
+
+import Shapes from '../components/Shapes.svelte';
 ---
 
 <Layout>
+  <Shapes client:idle />
+  <h1>Hello, world</h1>
 </Layout>
+
+<style>
+  :root {
+    margin: 0;
+    padding: 0;
+  }
+
+  h1 {
+    color: white;
+  }
+</style>
