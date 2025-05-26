@@ -123,8 +123,7 @@
 
     scene.add(helix);
     scene.add(cube);
-
-    camera.position.z = 6;
+    scene.background = new THREE.Color(0x030712);
 
     const animate = () => {
       rotateHelix(helix);
