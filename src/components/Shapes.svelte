@@ -145,8 +145,13 @@
       const height = 2 * Math.tan(vFOV / 2) * camera.position.z;
       const width = height * camera.aspect;
 
-      helix.position.set((width / 2) - mx, (height / 2) - my, -2);
-      cube.position.set((-width / 2) + mx, (height / 3) - my, 0);
+      if (5 > width) {
+        helix.position.set(0, 0, -2);
+        cube.position.set(999, 999, 0);
+      } else {
+        helix.position.set((width / 2) - mx, (height / 2) - my, -2);
+        cube.position.set((-width / 2) + mx, (height / 2) - my, 0);
+      }
     }
 
     const scroll = () => {
