@@ -138,7 +138,7 @@
       camera.updateProjectionMatrix();
       renderer.setSize(window.innerWidth, window.innerHeight);
 
-      const mx = 2;
+      const mx = 1;
       const my = 1;
 
       const vFOV = THREE.MathUtils.degToRad(camera.fov);
