@@ -52,8 +52,8 @@
   }
 
   const createHelix = (): THREE.Object3D => {
-    const radius = 0.4;
-    const path = new HelixCurve(radius, 2, 1);
+    const radius = 1;
+    const path = new HelixCurve(radius, 4, 2);
     const geometry = new THREE.TubeGeometry(path, 200, 0.1, 16, false);
 
     const mesh = new THREE.Mesh(geometry, material);
@@ -138,20 +138,19 @@
       renderer.setSize(window.innerWidth, window.innerHeight);
 
       const mx = 2;
-      const my = 0.5;
+      const my = 1;
 
       const vFOV = THREE.MathUtils.degToRad(camera.fov);
       const height = 2 * Math.tan(vFOV / 2) * camera.position.z;
       const width = height * camera.aspect;
 
-      helix.position.set((width / 2) - mx, (height / 2) - my, 0);
-      cube.position.set((-width / 2) + mx, 0, 0);
+      helix.position.set((width / 2) - mx, (height / 2) - my, -2);
+      cube.position.set((-width / 2) + mx, (height / 3) - my, 0);
     }
 
     const scroll = () => {
       const scrollTop = window.scrollY;
-      camera.rotation.x = -scrollTop * 0.0006;
-      camera.position.z = 6 - scrollY * 0.01;
+      camera.rotation.x = -scrollTop * 0.001;
     }
 
     window.addEventListener('resize', resize);
