@@ -5,32 +5,37 @@
 
   let board: poulet.Square[] = $state(Array(64).fill(null));
 
+  let game: number | null = $state(null);
+  let brains: number[] | null = $state(null);
+  let turn: poulet.Color = $state('white');
+
   onMount(() => {
     const script = document.createElement('script');
     script.src = '/wasm/poulet.js';
     console.log('created script');
     script.onload = () => poulet.onInitialized(async () => {
-      const gamePtr = poulet.initGame();
-      board = poulet.getBoard(gamePtr);
-      const brainPtr = poulet.initBrain();
-      setInterval(() => {
-        const whiteMove = poulet.nextMove(gamePtr, brainPtr, "white");
-        if (whiteMove) {
-          poulet.doMove(gamePtr, whiteMove.src.x, whiteMove.src.y, whiteMove.dst.x, whiteMove.dst.y);
-        }
-
-        const blackMove = poulet.nextMove(gamePtr, brainPtr, "black");
-        if (blackMove) {
-          poulet.doMove(gamePtr, blackMove.src.x, blackMove.src.y, blackMove.dst.x, blackMove.dst.y);
-        }
-
-        board = poulet.getBoard(gamePtr);
-      }, 5000);
-      // poulet.freeGame(gamePtr);
-      // poulet.freeBrain(brainPtr);
+      game = poulet.initGame();
+      board = poulet.getBoard(game);
+      brains = [poulet.initBrain(), poulet.initBrain()];
     });
     document.head.appendChild(script);
   })
+
+  const next = () => {
+    if (!brains || !game) {
+      return;
+    }
+
+    const move = poulet.nextMove(game, turn === 'white' ? brains[0] : brains[1], turn, 0.6);
+    if (!move) {
+      console.log('checkmate!');
+      return;
+    }
+
+    turn = turn === 'white' ? 'black' : 'white';
+    poulet.doMove(game, move.src.x, move.src.y, move.dst.x, move.dst.y);
+    board = poulet.getBoard(game);
+  }
 </script>
 
 <div>
@@ -44,6 +49,7 @@
       </div>
     {/each}
   </div>
+  <button onclick={next}>Next</button>
 </div>
 
 <style>
