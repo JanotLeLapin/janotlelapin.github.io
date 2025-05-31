@@ -1,5 +1,11 @@
 export type Move = 'illegal' | 'legal' | 'take' | 'takeEnPassant' | 'castle' | 'unsafe';
 export type Color = 'black' | 'white';
+export type Piece = 'pawn' | 'bishop' | 'knight' | 'rook' | 'queen' | 'king';
+
+export type Square = {
+  color: Color,
+  piece: Piece,
+} | null;
 
 export type Position = {
   x: number,
@@ -8,6 +14,7 @@ export type Position = {
 
 const INDEXED_MOVES: Move[] = ['illegal', 'legal', 'take', 'takeEnPassant', 'castle', 'unsafe'];
 const INDEXED_COLORS: Color[] = ['black', 'white'];
+const INDEXED_PIECES: Piece[] = ['pawn', 'bishop', 'knight', 'rook', 'queen', 'king'];
 
 const getModule = (): any => (window as any).Module;
 
@@ -22,6 +29,24 @@ export const initGame = (): number => {
   getModule().ccall('chess_init', null, ['number'], [gamePtr]);
 
   return gamePtr;
+}
+
+export const getBoard = (gamePtr: number): Square[] => {
+  const res = Array(64).fill(null);
+
+  const mem = new Uint8Array(getModule().HEAPU8.buffer, gamePtr, 64);
+  for (let i = 0; i < 64; i++) {
+    if (!mem[i]) {
+      continue;
+    }
+
+    res[i] = {
+      color: INDEXED_COLORS[mem[i] >> 3],
+      piece: INDEXED_PIECES[(mem[i] & 0x07) - 1],
+    }
+  }
+
+  return res;
 }
 
 export const isMoveSafe = (gamePtr: number, ax: number, ay: number, bx: number, by: number): Move => {
