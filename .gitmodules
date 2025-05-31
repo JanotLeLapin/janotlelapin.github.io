@@ -1,0 +1,3 @@
+[submodule "poulet"]
+	path = poulet
+	url = git@github.com:JanotLeLapin/poulet
