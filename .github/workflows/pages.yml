@@ -16,6 +16,19 @@ jobs:
     steps:
       - name: Checkout your repository using git
         uses: actions/checkout@v4
+        with:
+          submodules: true
+      - name: Install Emscripten
+        uses: mymindstorm/setup-emsdk@v14
+        with:
+          version: latest
+      - name: Build chess engine
+        run: |
+          cd poulet
+          make wasm
+          mkdir -p ../public/wasm
+          cp poulet.wasm ../public/wasm
+          cp poulet.js ../public/wasm
       - name: Install, build, and upload your site output
         uses: withastro/action@v4
         with:
