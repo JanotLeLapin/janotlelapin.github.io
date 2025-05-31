@@ -60,6 +60,15 @@ export const isMoveSafe = (gamePtr: number, ax: number, ay: number, bx: number, 
   return INDEXED_MOVES[move];
 }
 
+export const doMove = (gamePtr: number, ax: number, ay: number, bx: number, by: number) => {
+  getModule().ccall(
+    'chess_do_move',
+    null,
+    ['number', 'number', 'number', 'number', 'number'],
+    [gamePtr, ax, ay, bx, by],
+  );
+}
+
 export const initBrain = (): number => {
   const brainSize = getModule().ccall('w_ai_brain_t_size', 'number');
   const brainPtr: number = getModule()._malloc(brainSize);
