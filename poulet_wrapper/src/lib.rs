@@ -149,9 +149,14 @@ impl PouletNetwork {
     }
 
     #[wasm_bindgen]
-    pub fn next_move(&mut self, game: &mut PouletGame) -> Option<PouletMove> {
+    pub fn next_move(&mut self, game: &mut PouletGame, temperature: f64) -> Option<PouletMove> {
         let (mut input, mut output) = self.0.get_buffer();
-        let res = match poulet::next_move(&mut self.0, &mut game.0, (&mut input, &mut output)) {
+        let res = match poulet::next_move(
+            &mut self.0,
+            &mut game.0,
+            (&mut input, &mut output),
+            temperature,
+        ) {
             Ok(v) => v,
             Err(_) => return None,
         }?;

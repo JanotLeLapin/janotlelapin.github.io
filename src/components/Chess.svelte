@@ -20,7 +20,7 @@
       return;
     }
 
-    const move = (game.get_turn() == poulet.PouletColor.from_string("white") ? brains[0] : brains[1]).next_move(game);
+    const move = (game.get_turn() == poulet.PouletColor.from_string("white") ? brains[0] : brains[1]).next_move(game, 1.0);
     if (!move) {
       console.log('end of game!');
       return;
