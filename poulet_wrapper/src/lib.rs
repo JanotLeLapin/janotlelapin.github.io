@@ -150,7 +150,8 @@ impl PouletNetwork {
 
     #[wasm_bindgen]
     pub fn next_move(&mut self, game: &mut PouletGame) -> Option<PouletMove> {
-        let res = match poulet::next_move(&mut self.0, &mut game.0) {
+        let (mut input, mut output) = self.0.get_buffer();
+        let res = match poulet::next_move(&mut self.0, &mut game.0, (&mut input, &mut output)) {
             Ok(v) => v,
             Err(_) => return None,
         }?;
@@ -161,6 +162,17 @@ impl PouletNetwork {
             dst_x: res.dst.0,
             dst_y: res.dst.1,
         })
+    }
+
+    #[wasm_bindgen]
+    pub fn load(vec: Vec<u8>) -> Option<Self> {
+        match vec.try_into() {
+            Ok(v) => Some(Self(v)),
+            Err(e) => {
+                log(&e.to_string());
+                None
+            }
+        }
     }
 }
 
