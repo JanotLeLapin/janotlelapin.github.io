@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
+import Chess from "../components/Chess.svelte"
 import Shapes from '../components/Shapes.svelte';
 import Heading from '../components/Heading.svelte'
 ---
@@ -10,6 +11,7 @@ import Heading from '../components/Heading.svelte'
   <main>
     <Heading client:idle />
   </main>
+  <Chess client:idle />
   <div class="filler">
     <p>Foo</p>
   </div>
