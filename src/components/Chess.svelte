@@ -9,10 +9,11 @@
   let brains: poulet.PouletNetwork[] | null = $state(null);
 
   onMount(async () => {
+    const network = await fetch('/chess/brain.model').then(res => res.arrayBuffer())
     await poulet.default();
     game = poulet.PouletGame.new();
     board = game.get_board();
-    brains = [poulet.PouletNetwork.init() as poulet.PouletNetwork, poulet.PouletNetwork.init() as poulet.PouletNetwork];
+    brains = [poulet.PouletNetwork.load(new Uint8Array(network)) as poulet.PouletNetwork, poulet.PouletNetwork.init() as poulet.PouletNetwork];
   })
 
   const next = () => {
