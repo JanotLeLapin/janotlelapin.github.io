@@ -4,7 +4,8 @@
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build:wasm": "cd poulet_wrapper && ./build.sh && rm -rf ../src/wasm && cp -r pkg ../src/wasm",
+    "build": "npm run build:wasm && astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
