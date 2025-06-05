@@ -4,6 +4,7 @@
   import * as poulet from '../wasm'
 
   let board: poulet.PouletPiece[] = $state(Array(64).fill(null));
+  let latestMove: poulet.PouletMove | null = $state(null);
 
   let game: poulet.PouletGame | null = $state(null);
   let brains: poulet.PouletNetwork[] | null = $state(null);
@@ -28,6 +29,7 @@
     }
 
     game.do_move(move.get_src_x(), move.get_src_y(), move.get_dst_x(), move.get_dst_y());
+    latestMove = move;
     board = game.get_board();
   }
 </script>
@@ -36,7 +38,7 @@
   <h1>Chess!</h1>
   <div class="board">
     {#each board as piece, i}
-      <div class="square {((i + Math.floor(i / 8)) % 2 === 0) ? 'light' : 'dark'}">
+      <div class="square {((i + Math.floor(i / 8)) % 2 === 0) ? 'light' : 'dark'} {latestMove && i == latestMove.get_dst_x() + latestMove.get_dst_y() * 8 ? 'dst' : ''} {latestMove && i == latestMove.get_src_x() + latestMove.get_src_y() * 8 ? 'src' : ''}">
         {#if piece?.is_some()}
           <img src="/chess/{piece.get_color()?.to_string()}-{piece.get_piece_type()?.to_string()}.svg" alt="{piece.get_color()?.to_string()} and {piece.get_piece_type()?.to_string()}" />
         {/if}
@@ -65,13 +67,22 @@
   justify-content: center;
   font-size: 2rem;
   user-select: none;
+  transition: background ease-in-out 50ms;
 }
 
-.light {
+.square.light {
   background: oklch(92.9% 0.013 255.508);
 }
 
-.dark {
+.square.dark {
   background: oklch(38.6% 0.063 188.416);
+}
+
+.square.src {
+  background: oklch(85.5% 0.138 181.071);
+}
+
+.square.dst {
+  background: oklch(81% 0.117 11.638);
 }
 </style>
