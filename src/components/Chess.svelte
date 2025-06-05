@@ -1,24 +1,18 @@
 <script lang="ts">
   import { onMount } from 'svelte';
 
-  import * as poulet from '../lib/poulet'
+  import * as poulet from '../wasm'
 
-  let board: poulet.Square[] = $state(Array(64).fill(null));
+  let board: poulet.PouletPiece[] = $state(Array(64).fill(null));
 
-  let game: number | null = $state(null);
-  let brains: number[] | null = $state(null);
-  let turn: poulet.Color = $state('white');
+  let game: poulet.PouletGame | null = $state(null);
+  let brains: poulet.PouletNetwork[] | null = $state(null);
 
-  onMount(() => {
-    const script = document.createElement('script');
-    script.src = '/wasm/poulet.js';
-    console.log('created script');
-    script.onload = () => poulet.onInitialized(async () => {
-      game = poulet.initGame();
-      board = poulet.getBoard(game);
-      brains = [poulet.initBrain(), poulet.initBrain()];
-    });
-    document.head.appendChild(script);
+  onMount(async () => {
+    await poulet.default();
+    game = poulet.PouletGame.new();
+    board = game.get_board();
+    brains = [poulet.PouletNetwork.init() as poulet.PouletNetwork, poulet.PouletNetwork.init() as poulet.PouletNetwork];
   })
 
   const next = () => {
@@ -26,15 +20,14 @@
       return;
     }
 
-    const move = poulet.nextMove(game, turn === 'white' ? brains[0] : brains[1], turn, 0.6);
+    const move = (game.get_turn() == poulet.PouletColor.from_string("white") ? brains[0] : brains[1]).next_move(game);
     if (!move) {
-      console.log('checkmate!');
+      console.log('end of game!');
       return;
     }
 
-    turn = turn === 'white' ? 'black' : 'white';
-    poulet.doMove(game, move.src.x, move.src.y, move.dst.x, move.dst.y);
-    board = poulet.getBoard(game);
+    game.do_move(move.get_src_x(), move.get_src_y(), move.get_dst_x(), move.get_dst_y());
+    board = game.get_board();
   }
 </script>
 
@@ -43,8 +36,8 @@
   <div class="board">
     {#each board as piece, i}
       <div class="square {((i + Math.floor(i / 8)) % 2 === 0) ? 'light' : 'dark'}">
-        {#if piece}
-          <img src="/chess/{piece.color}-{piece.piece}.svg" alt="{piece.color} {piece.piece}" />
+        {#if piece?.is_some()}
+          <img src="/chess/{piece.get_color()?.to_string()}-{piece.get_piece_type()?.to_string()}.svg" alt="{piece.get_color()?.to_string()} and {piece.get_piece_type()?.to_string()}" />
         {/if}
       </div>
     {/each}
@@ -74,10 +67,10 @@
 }
 
 .light {
-  background: white;
+  background: oklch(92.9% 0.013 255.508);
 }
 
 .dark {
-  background: blue;
+  background: oklch(38.6% 0.063 188.416);
 }
 </style>
