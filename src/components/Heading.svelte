@@ -21,11 +21,12 @@
 
   .heading h1 {
     font-size: 12vw;
+    font-weight: 800;
     margin: 0;
   }
 
   .heading h3 {
     font-size: 2em;
-    font-weight: 400;
+    font-weight: 200;
   }
 </style>
