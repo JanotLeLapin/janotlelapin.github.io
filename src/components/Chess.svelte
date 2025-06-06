@@ -71,18 +71,18 @@
 }
 
 .square.light {
-  background: oklch(92.9% 0.013 255.508);
+  background: oklch(94.8% 0.028 342.258);
 }
 
 .square.dark {
-  background: oklch(38.6% 0.063 188.416);
+  background: oklch(40.8% 0.153 2.432);
 }
 
 .square.src {
-  background: oklch(85.5% 0.138 181.071);
+  background: oklch(81% 0.117 11.638);
 }
 
 .square.dst {
-  background: oklch(81% 0.117 11.638);
+  background: oklch(58.6% 0.253 17.585);
 }
 </style>
