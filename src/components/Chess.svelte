@@ -78,7 +78,7 @@
   }
 
   const clickSquare = (x: number, y: number) => {
-    if (!game) {
+    if (!game || Array.isArray(game.controller)) {
       return;
     }
 
