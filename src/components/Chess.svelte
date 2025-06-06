@@ -26,10 +26,10 @@
   let click: Position | null = $state(null);
 
   onMount(async () => {
-    const network = await fetch('/chess/brain.model').then(res => res.arrayBuffer())
+    const params = await fetch('/chess/brain.model').then(res => res.arrayBuffer())
     await poulet.default();
 
-    const smartNetwork = poulet.PouletNetwork.load(new Uint8Array(network));
+    const smartNetwork = poulet.PouletNetwork.load(new Uint8Array(params));
     if (!smartNetwork) {
       console.error('could not load smart neural network');
       return;
