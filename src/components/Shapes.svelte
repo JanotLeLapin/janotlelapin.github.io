@@ -22,8 +22,8 @@
 
       void main() {
         float mixFactor = (vPosition.x + vPosition.y) * 0.5 + 0.5;
-        vec3 colorA = vec3(0.64, 0.70, 1.0);
-        vec3 colorB = vec3(1.0, 0.63, 0.68);
+        vec3 colorA = vec3(0.994, 0.646, 0.837);
+        vec3 colorB = vec3(0.311, 0.224, 0.966);
         vec3 finalColor = mix(colorA, colorB, mixFactor);
         gl_FragColor = vec4(finalColor, 1.0);
       }
