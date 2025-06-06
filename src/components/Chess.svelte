@@ -47,37 +47,34 @@
       return;
     }
 
+    let move: poulet.PouletMove;
+
     if (Array.isArray(game.controller)) {
-      const move = (game.game.get_turn().to_string() == 'white' ? game.controller[0] : game.controller[1]).next_move(game.game, game.game.get_turn().to_string() == 'white' ? 0.1 : 1.0);
-      if (!move) {
+      const tmp = (game.game.get_turn().to_string() == 'white' ? game.controller[0] : game.controller[1]).next_move(game.game, game.game.get_turn().to_string() == 'white' ? 0.1 : 1.0);
+      if (!tmp) {
         console.log('end of game!');
         return;
       }
-
-      game.game.do_move(move.get_src_x(), move.get_src_y(), move.get_dst_x(), move.get_dst_y());
-      latestMove = {
-        src: { x: move.get_src_x(), y: move.get_src_y() },
-        dst: { x: move.get_dst_x(), y: move.get_dst_y() },
-      };
-      board = game.game.get_board();
+      move = tmp;
     } else {
       if (game.game.get_turn().to_string() !== 'white') {
         return;
       }
 
-      const move = game.controller.next_move(game.game, 1.0);
-      if (!move) {
+      const tmp = game.controller.next_move(game.game, 1.0);
+      if (!tmp) {
         console.log('end of game!');
         return;
       }
-
-      game.game.do_move(move.get_src_x(), move.get_src_y(), move.get_dst_x(), move.get_dst_y());
-      latestMove = {
-        src: { x: move.get_src_x(), y: move.get_src_y() },
-        dst: { x: move.get_dst_x(), y: move.get_dst_y() },
-      };
-      board = game.game.get_board();
+      move = tmp;
     }
+
+    game.game.do_move(move.get_src_x(), move.get_src_y(), move.get_dst_x(), move.get_dst_y());
+    latestMove = {
+      src: { x: move.get_src_x(), y: move.get_src_y() },
+      dst: { x: move.get_dst_x(), y: move.get_dst_y() },
+    };
+    board = game.game.get_board();
   }
 
   const clickSquare = (x: number, y: number) => {
